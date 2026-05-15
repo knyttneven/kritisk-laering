@@ -18,20 +18,29 @@ export default function Home() {
   const instruction = buildInstruction({ domain, activeToggleIds, wizardAnswers })
 
   return (
-    <main className="min-h-screen bg-zinc-50 flex flex-col items-center px-4 py-16 gap-12">
-      <Intro />
+    <>
+      <div className="fixed inset-0 -z-10 gradient-bg" />
 
-      <AhaMoment />
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 gap-12">
+        <Intro />
+        <AhaMoment />
+        <div className="flex flex-col items-center gap-1 text-white/30 text-xs select-none pointer-events-none">
+          <span>Bygg din instrukstekst</span>
+          <span className="animate-bounce">↓</span>
+        </div>
+      </section>
 
-      <div className="w-full max-w-5xl border-t border-zinc-200" />
-
-      <DomainSelector selected={domain} onChange={setDomain} />
-
-      <InstructionBuilder activeIds={activeToggleIds} onChange={setActiveToggleIds} />
-
-      <ProfileWizard answers={wizardAnswers} onChange={setWizardAnswers} />
-
-      <ExportPanel instruction={instruction} />
-    </main>
+      <section className="px-4 pb-24">
+        <div className="max-w-5xl mx-auto rounded-2xl bg-white/90 backdrop-blur-2xl border border-white/50 shadow-2xl p-8 md:p-12 flex flex-col gap-8">
+          <DomainSelector selected={domain} onChange={setDomain} />
+          <hr className="border-zinc-200" />
+          <InstructionBuilder activeIds={activeToggleIds} onChange={setActiveToggleIds} />
+          <hr className="border-zinc-200" />
+          <ProfileWizard answers={wizardAnswers} onChange={setWizardAnswers} />
+          <hr className="border-zinc-200" />
+          <ExportPanel instruction={instruction} />
+        </div>
+      </section>
+    </>
   )
 }
